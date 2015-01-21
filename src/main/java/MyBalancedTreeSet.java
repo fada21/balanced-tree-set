@@ -1,7 +1,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class MyBalancedTreeSet<T extends Comparable<T>> {
     public static final boolean RED = true;
@@ -98,7 +101,7 @@ public class MyBalancedTreeSet<T extends Comparable<T>> {
     }
 
     public List<T> asList() { // should implement iterable, but this is enough I think
-        if (root!=null) {
+        if (root != null) {
             return asList(root, new ArrayList<T>());
         }
         return Collections.emptyList();
@@ -190,7 +193,7 @@ public class MyBalancedTreeSet<T extends Comparable<T>> {
 
     public static void main(String[] args) {
         MyBalancedTreeSet<Integer> integerRBTree = new MyBalancedTreeSet<Integer>();
-        List<Integer> integers = Arrays.asList(1, 2, 7, 9, 3, 4, 5, 6, 8, 0);
+        List<Integer> integers = Arrays.asList(25, 0, 15, 16, 255, 1, 9);
         for (Integer i : integers) {
             System.out.println("Adding: " + i);
             integerRBTree.add(i);
@@ -199,7 +202,7 @@ public class MyBalancedTreeSet<T extends Comparable<T>> {
         integerRBTree.printAll();
 
 
-        System.out.println("Please pass int as an input to add:");
+        System.out.println("\nNow it's time to play. Please pass integer number as an input to add and hit enter (ctrl-z to break):");
         MyBalancedTreeSet<Integer> integerRBTreeInput = new MyBalancedTreeSet<Integer>();
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -209,12 +212,12 @@ public class MyBalancedTreeSet<T extends Comparable<T>> {
                     int parsedInt = Integer.parseInt(input);
                     integerRBTreeInput.add(parsedInt);
                 } catch (NumberFormatException nfe) {
-                    System.out.println("Not a valid input! Please");
+                    System.out.println("Not a valid input! Please pass an integer");
                 }
+                System.out.println("Tree items in order:");
                 integerRBTreeInput.printAll();
                 HeightSize heightSize = (HeightSize) integerRBTreeInput.computeHeightAndSize();
                 System.out.println("Height: " + heightSize.height + ", Size: " + heightSize.size);
-
             }
         } catch (IOException io) {
             io.printStackTrace();
