@@ -60,6 +60,13 @@ public class MyBalancedTreeSetTest {
         assertEquals(new ArrayList<Integer>(set), tree.asList());
     }
 
+    @Test
+    public void testInfinities() {
+        List<Integer> ints = Arrays.asList(Integer.MAX_VALUE, Integer.MIN_VALUE, 2, -3, 1, 9, -7);
+        tree.addList(ints);
+        Collections.sort(ints);
+        assertEquals(ints, tree.asList());
+    }
 
     @Test
     public void testBoardExample() {
